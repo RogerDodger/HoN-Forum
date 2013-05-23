@@ -18,6 +18,19 @@ perl user-post-info.pl 497383
 
 If you try analysing a thread that you haven't scraped yet, you're gonna have a bad time.
 
+Dependencies
+------------
+
+These scripts utilise a number of CPAN distributions, listed below. Install from your local CPAN mirror (for example, using [cpanminus](http://search.cpan.org/dist/App-cpanminus/lib/App/cpanminus.pm)).
+
+```
+DateTime
+DateTime::Format::ISO8601
+Mojolicious
+DBI
+DBD::SQLite
+```
+
 Example Query Output
 --------------------
 
