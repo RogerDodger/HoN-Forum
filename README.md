@@ -126,5 +126,5 @@ Limitations
 
 The Mafia vote counter relies on a few imperfect heuristics to determine what to output:
 
-* Game date may be listed incorrect if the host doesn't explicitly say what day/night it is in a clear manner
+* The listed game date may be incorrect if the host doesn't explicitly say the current day/night in a clear manner.
 * Players can make a post appear almost lime by setting the colour to, for example, `#05fb04`, and it won't be considered a vote.
