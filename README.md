@@ -1,5 +1,5 @@
-HoN Forum scripts
-=================
+HoN Forum
+=========
 
 Some Perl cobbled together to get information from HoN threads---namely, information that's useful for Mafia games. The task is split into two steps: extraction and querying.
 
