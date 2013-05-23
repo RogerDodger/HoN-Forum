@@ -3,7 +3,7 @@ HoN Forum scripts
 
 Some Perl cobbled together to get information from HoN threads---namely, information that's useful for Mafia games. The task is split into two steps: extraction and querying.
 
-Before you analyse any data, you have to fetch and store some. This is so that you're not pounding on S2's servers retrieving the same information over and over again.
+Before you query the data, you have to fetch and store it. This is so that you're not pounding on S2's servers retrieving the same information over and over again every time you want to look at it.
 
 Quick Setup
 -----------
@@ -18,8 +18,8 @@ perl user-post-info.pl 497383
 
 If you try analysing a thread that you haven't scraped yet, you're gonna have a bad time.
 
-Example Output
---------------
+Example Query Output
+--------------------
 
 Geting some information on users' activity in a thread:
 
