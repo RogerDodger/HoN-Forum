@@ -120,3 +120,11 @@ Day 5 [05 May 2013 16:13]      iNsania unvoted TaeYeon
 
 Data retrieved 23 May 2013 13:58 +0000
 ```
+
+Limitations
+-----------
+
+The Mafia vote counter relies on a few imperfect heuristics to determine what to output:
+
+* Game date may be listed incorrect if the host doesn't explicitly say what day/night it is in a clear manner
+* Players can make a post appear almost lime by setting the colour to, for example, `#05fb04`, and it won't be considered a vote.
