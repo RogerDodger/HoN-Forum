@@ -1,0 +1,103 @@
+package main;
+
+use Mojo::Base -strict;
+use DBI;
+use DateTime::TimeZone;
+
+our ($thread, $wrapper, $dbh);
+
+BEGIN {
+	chomp(our $usage ||= "usage: $0 thread");
+
+	if (defined $ARGV[0] && $ARGV[0] =~ /^-h/) {
+		say $usage;
+		exit(1);
+	}
+
+	our $thread ||= shift or say $usage and exit(1);
+
+	if ($thread =~ /[^0-9]/) {
+		say "Invalid thread: `$thread`. Must be an integer";
+		exit(1);
+	}
+
+	$ENV{TZ} //= 'UTC';
+	if (!DateTime::TimeZone->is_valid_name($ENV{TZ})) {
+		say "Invalid timezone: `$ENV{TZ}`.";
+		exit(1);
+	}
+
+	if (!-e 'HoN-Forum.db') {
+		say "Database `HoN-Forum.db` not found. Create it with `schema.sql`.";
+		exit(1);
+	}
+
+	our $dbh = DBI->connect('dbi:SQLite:HoN-Forum.db', '', '', {
+		RaiseError => 1,
+		AutoCommit => 0,
+		sqlite_unicode => 1,
+	});
+}
+
+use Mojo::UserAgent;
+use DateTime;
+use DateTime::Format::ISO8601;
+
+sub format_timestamp {
+	my $timestamp = shift;
+	my $fmt = shift || '%d %b %Y %H:%M';
+	return DateTime::Format::ISO8601
+			->parse_datetime($timestamp)
+			->set_time_zone($ENV{TZ})
+			->strftime($fmt);
+}
+
+sub header {
+	my $sth = $dbh->prepare('SELECT title FROM threads WHERE id = ?');
+	$sth->execute($thread);
+	my $header = $sth->fetchrow_array . " (id: $thread)";
+	$sth->finish;
+	return $header;
+}
+
+sub footer {
+	my $sth = $dbh->prepare('SELECT retrieved FROM threads WHERE id = ?');
+	$sth->execute($thread);
+	my $footer = "Data retrieved " . format_timestamp($sth->fetchrow_array, '%d %b %Y %H:%M %z');
+	$sth->finish;
+	return $footer;
+}
+
+END {
+	return if $? != 0;
+
+	if ($wrapper) {
+		say q{};
+		say footer;
+	}
+	$dbh->disconnect;
+}
+
+package HoNForum;
+
+sub import {
+	my $class = shift;
+	return unless my $flag = shift;
+
+	if ($flag eq '-wrapper') {
+		my $sth = $main::dbh->prepare('SELECT COUNT(*) FROM posts WHERE thread = ?');
+		$sth->execute($main::thread);
+		if ($sth->fetchrow_arrayref->[0] == 0) {
+			say "No data for thread `$thread`. Try running `scrape.pl` first.";
+			exit(1);
+		}
+
+		my $header = main::header;
+		say $header;
+		say '=' x length $header;
+		say q{};
+		$main::wrapper = 1;
+	}
+}
+
+1;
