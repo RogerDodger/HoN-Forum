@@ -16,8 +16,12 @@ perl scrape.pl 497393              # 497393 is the thread ID for game XII
 perl user-post-info.pl 497383
 ```
 
+If you try analysing a thread that you haven't scraped yet, you're gonna have a bad time.
+
 Example Output
 --------------
+
+Geting some information on users' activity in a thread:
 
 ```
 $ perl user-post-info.pl 488154
@@ -54,6 +58,8 @@ Mafia XI - The Chains Of Deception (id: 488154)
 
 Data retrieved 23 May 2013 13:58 +0000
 ```
+
+Getting a mafia game's vote history:
 
 ```
 $ perl mafia-vote-history.pl 488154 TheJoo "Day 1"
