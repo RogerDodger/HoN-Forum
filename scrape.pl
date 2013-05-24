@@ -9,13 +9,14 @@ our ($dbh, $thread);
 my $base_url = "http://forums.heroesofnewerth.com/showthread.php?$thread";
 my $ua       = Mojo::UserAgent->new;
 
+# S2 is on Michigan time and forum posts appear in that time zone
 my $strptime = DateTime::Format::Strptime->new(
 	pattern   => '%m-%d-%Y, %I:%M %p',
 	time_zone => 'America/Detroit',
 	on_error  => 'croak',
 );
-my $today     = DateTime->now->mdy;
-my $yesterday = DateTime->now->subtract(days => 1)->mdy;
+my $today     = DateTime->now(time_zone => 'America/Detroit')->mdy;
+my $yesterday = DateTime->now(time_zone => 'America/Detroit')->subtract(days => 1)->mdy;
 
 my $insert_post = $dbh->prepare('INSERT INTO posts VALUES (?, ?, ?, ?, ?, ?, ?)');
 my $delete_post = $dbh->prepare('DELETE FROM posts WHERE id = ?');
