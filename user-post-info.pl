@@ -8,9 +8,9 @@ our ($dbh, $thread);
 my $sth = $dbh->prepare(q{
 	SELECT
 		me.user AS name,
-		(SELECT MAX(created) FROM posts WHERE user = me.user) AS last_post,
-		(SELECT COUNT(*) FROM posts WHERE user = me.user) AS post_count,
-		(SELECT SUM(wordcount) FROM posts WHERE user = me.user) AS wc_sum
+		(SELECT MAX(created) FROM posts WHERE user = me.user AND thread = me.thread) AS last_post,
+		(SELECT COUNT(*) FROM posts WHERE user = me.user AND thread = me.thread) AS post_count,
+		(SELECT SUM(wordcount) FROM posts WHERE user = me.user AND thread = me.thread) AS wc_sum
 	FROM
 		posts me
 	WHERE
