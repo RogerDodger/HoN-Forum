@@ -43,33 +43,33 @@ Mafia XI - The Chains Of Deception (id: 488154)
 
      Username  Last post          Total posts  Wordcount
 --------------------------------------------------------
-       TheJoo  23 May 2013 10:44  68           6407
-  SmurfinBird  23 May 2013 10:29  138          18809
- SomethingOdd  23 May 2013 09:27  49           666
-      lortaku  23 May 2013 02:43  34           1736
-     Bloodaxe  23 May 2013 00:34  82           8400
-   SuwakoChan  23 May 2013 00:11  21           2483
-       Wololo  22 May 2013 22:30  26           1088
-     Apostate  22 May 2013 20:39  144          22390
-    scoutTier  22 May 2013 20:28  5            252
-        Ekamo  22 May 2013 18:45  33           5297
-  SavagePanic  22 May 2013 17:09  117          8261
-      Rubidxx  22 May 2013 15:52  17           1060
-    Kluckmuck  22 May 2013 13:38  50           5073
-      Hubaris  08 May 2013 00:25  146          12938
-      iNsania  06 May 2013 12:29  76           5729
-     Sammerrz  05 May 2013 21:11  37           900
-      TaeYeon  05 May 2013 16:13  123          30078
-     Beanybag  03 May 2013 13:17  88           7623
-        Emiya  02 May 2013 18:53  18           2807
-     Reldnahc  02 May 2013 16:07  28           3018
-      Friggey  21 Apr 2013 09:39  9            1311
- brachaalizah  21 Apr 2013 01:43  16           2367
-        Tedde  17 Apr 2013 10:25  1            6
- EndGoodSmith  16 Apr 2013 08:34  42           653
- YawningAngel  10 Apr 2013 17:26  6            852
+ SomethingOdd  11 May 2013 08:30  46           555      
+  SmurfinBird  11 May 2013 08:15  125          16756    
+     Bloodaxe  11 May 2013 06:19  81           8048     
+  SavagePanic  11 May 2013 03:08  109          7489     
+     Apostate  10 May 2013 22:47  136          19033    
+      Hubaris  08 May 2013 00:25  146          12938    
+    scoutTier  07 May 2013 21:06  2            99       
+      iNsania  06 May 2013 12:29  76           5729     
+     Sammerrz  05 May 2013 21:11  37           900      
+      TaeYeon  05 May 2013 16:13  123          30078    
+      lortaku  04 May 2013 01:59  31           1455     
+       TheJoo  03 May 2013 19:01  67           6338     
+     Beanybag  03 May 2013 13:17  88           7623     
+   SuwakoChan  03 May 2013 01:04  19           1330     
+        Emiya  02 May 2013 18:53  18           2807     
+        Ekamo  02 May 2013 16:51  30           4722     
+     Reldnahc  02 May 2013 16:07  28           3018     
+    Kluckmuck  02 May 2013 10:58  49           4961     
+      Rubidxx  27 Apr 2013 23:21  14           790      
+       Wololo  24 Apr 2013 19:09  23           852      
+      Friggey  21 Apr 2013 09:39  9            1311     
+ brachaalizah  21 Apr 2013 01:43  16           2367     
+        Tedde  17 Apr 2013 10:25  1            6        
+ EndGoodSmith  16 Apr 2013 08:34  42           653      
+ YawningAngel  10 Apr 2013 17:26  6            852      
 
-Data retrieved 23 May 2013 13:58 +0000
+Data retrieved 24 May 2013 02:26 +0000
 ```
 
 Getting a mafia game's vote history:
