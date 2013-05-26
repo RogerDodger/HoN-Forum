@@ -4,14 +4,18 @@ use Mojo::Base -strict;
 use DBI;
 use DateTime::TimeZone;
 
-our ($thread, $wrapper, $dbh);
+our ($thread, $wrapper, $dbh, %switch);
 
 BEGIN {
 	chomp(our $usage ||= "usage: $0 thread");
 
-	if (defined $ARGV[0] && $ARGV[0] =~ /^-h/) {
-		say $usage;
-		exit(1);
+	if (defined $ARGV[0] && substr($ARGV[0], 0, 1) eq '-') {
+		our %switch = map { $_ => 1 } split //, substr(shift, 1);
+
+		if (defined $switch{h}) {
+			say $usage;
+			exit(1);
+		}
 	}
 
 	our $thread ||= shift or say $usage and exit(1);
