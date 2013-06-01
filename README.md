@@ -8,7 +8,7 @@ Before you query the data, you have to fetch and store it. This is so that you'r
 Quick Setup
 -----------
 
-All scripts require a thread ID as their first argument. Running scripts without arguments or with `-h` will give a full argument list.
+Running scripts without arguments or with `-h` will give usage information.
 
 ```bash
 sqlite3 HoN-Forum.db < schema.sql  # Filename is important here
@@ -43,31 +43,31 @@ Mafia XI - The Chains Of Deception (id: 488154)
 
      Username  Last post          Total posts  Wordcount
 --------------------------------------------------------
- SomethingOdd  11 May 2013 08:30  46           555      
-  SmurfinBird  11 May 2013 08:15  125          16756    
-     Bloodaxe  11 May 2013 06:19  81           8048     
-  SavagePanic  11 May 2013 03:08  109          7489     
-     Apostate  10 May 2013 22:47  136          19033    
-      Hubaris  08 May 2013 00:25  146          12938    
-    scoutTier  07 May 2013 21:06  2            99       
-      iNsania  06 May 2013 12:29  76           5729     
-     Sammerrz  05 May 2013 21:11  37           900      
-      TaeYeon  05 May 2013 16:13  123          30078    
-      lortaku  04 May 2013 01:59  31           1455     
-       TheJoo  03 May 2013 19:01  67           6338     
-     Beanybag  03 May 2013 13:17  88           7623     
-   SuwakoChan  03 May 2013 01:04  19           1330     
-        Emiya  02 May 2013 18:53  18           2807     
-        Ekamo  02 May 2013 16:51  30           4722     
-     Reldnahc  02 May 2013 16:07  28           3018     
-    Kluckmuck  02 May 2013 10:58  49           4961     
-      Rubidxx  27 Apr 2013 23:21  14           790      
-       Wololo  24 Apr 2013 19:09  23           852      
-      Friggey  21 Apr 2013 09:39  9            1311     
- brachaalizah  21 Apr 2013 01:43  16           2367     
-        Tedde  17 Apr 2013 10:25  1            6        
- EndGoodSmith  16 Apr 2013 08:34  42           653      
- YawningAngel  10 Apr 2013 17:26  6            852      
+ SomethingOdd  11 May 2013 08:30  46           555
+  SmurfinBird  11 May 2013 08:15  125          16756
+     Bloodaxe  11 May 2013 06:19  81           8048
+  SavagePanic  11 May 2013 03:08  109          7489
+     Apostate  10 May 2013 22:47  136          19033
+      Hubaris  08 May 2013 00:25  146          12938
+    scoutTier  07 May 2013 21:06  2            99
+      iNsania  06 May 2013 12:29  76           5729
+     Sammerrz  05 May 2013 21:11  37           900
+      TaeYeon  05 May 2013 16:13  123          30078
+      lortaku  04 May 2013 01:59  31           1455
+       TheJoo  03 May 2013 19:01  67           6338
+     Beanybag  03 May 2013 13:17  88           7623
+   SuwakoChan  03 May 2013 01:04  19           1330
+        Emiya  02 May 2013 18:53  18           2807
+        Ekamo  02 May 2013 16:51  30           4722
+     Reldnahc  02 May 2013 16:07  28           3018
+    Kluckmuck  02 May 2013 10:58  49           4961
+      Rubidxx  27 Apr 2013 23:21  14           790
+       Wololo  24 Apr 2013 19:09  23           852
+      Friggey  21 Apr 2013 09:39  9            1311
+ brachaalizah  21 Apr 2013 01:43  16           2367
+        Tedde  17 Apr 2013 10:25  1            6
+ EndGoodSmith  16 Apr 2013 08:34  42           653
+ YawningAngel  10 Apr 2013 17:26  6            852
 
 Data retrieved 24 May 2013 02:26 +0000
 ```

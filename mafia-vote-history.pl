@@ -5,11 +5,14 @@ use Mojo::Base -strict;
 
 BEGIN {
 	our $usage = <<"USAGE";
-usage: $0 [-tq] thread [host] [startdate]
+usage: $0 [-hqtnb] thread [host] [startdate]
 
 options:
+    -h    Display this help message
+    -q    Don't print header/footer
     -t    Print final vote tally to end of output
-    -q    Don't post vote history
+    -n    Don't post vote history
+    -b    Output BBCode
 USAGE
 }
 
@@ -26,6 +29,12 @@ if ($gamedate !~ $gamedate_qr) {
 
 my $sth = $dbh->prepare('SELECT * FROM posts WHERE thread = ?');
 $sth->execute($thread);
+
+if ($switch{b} && !$switch{n}) {
+	say 'Vote history:';
+	say q{};
+	print '[spoiler][code]';
+}
 
 my %votes;
 while (my $post = $sth->fetchrow_hashref) {
@@ -52,14 +61,14 @@ while (my $post = $sth->fetchrow_hashref) {
 		while ($text =~ /(un)?vote \b (?: [ ]? (\w{1,12}|no [ ] lynch) \b )?/ixg) {
 			if (defined(my $vote = $votes{$post->{user}})) {
 				delete $votes{$post->{user}};
-				unless ($switch{q}) {
+				unless ($switch{n}) {
 					printf "%s [%s] %12s unvoted %s\n", $gamedate,
 							format_timestamp($post->{created}), $post->{user}, $vote;
 				}
 			}
 			if (!defined $1 && defined $2) {
 				$votes{$post->{user}} = $2;
-				unless ($switch{q}) {
+				unless ($switch{n}) {
 					printf "%s [%s] %12s voted   %s\n", $gamedate,
 							format_timestamp($post->{created}), $post->{user}, $2;
 				}
@@ -68,7 +77,19 @@ while (my $post = $sth->fetchrow_hashref) {
 	});
 }
 
+if ($switch{b} && !$switch{n}) {
+	say '[/code][/spoiler]';
+}
+
 if ($switch{t}) {
-	say q{} unless $switch{q};
+	say q{} unless $switch{n};
+	if ($switch{b}) {
+		say 'Current votes: ';
+		say q{};
+		print '[code]';
+	}
 	printf "%12s => %s\n", $_, $votes{$_} for keys %votes;
+	if ($switch{b}) {
+		say '[/code]';
+	}
 }

@@ -7,15 +7,22 @@ use DateTime::TimeZone;
 our ($thread, $wrapper, $dbh, %switch);
 
 BEGIN {
-	chomp(our $usage ||= "usage: $0 thread");
+	our %switch;
+	chomp(our $usage ||= <<"USAGE");
+usage: $0 [-hq] thread
 
-	if (defined $ARGV[0] && substr($ARGV[0], 0, 1) eq '-') {
-		our %switch = map { $_ => 1 } split //, substr(shift, 1);
+options:
+    -h    Display this help message
+    -q    Don't print header/footer
+USAGE
 
-		if (defined $switch{h}) {
-			say $usage;
-			exit(1);
-		}
+	while (defined $ARGV[0] && substr($ARGV[0], 0, 1) eq '-') {
+		%switch = (%switch, map { $_ => 1 } split //, substr shift, 1);
+	}
+
+	if (defined $switch{h}) {
+		say $usage;
+		exit(1);
 	}
 
 	our $thread ||= shift or say $usage and exit(1);
@@ -96,11 +103,13 @@ sub import {
 			exit(1);
 		}
 
-		my $header = main::header;
-		say $header;
-		say '=' x length $header;
-		say q{};
-		$main::wrapper = 1;
+		unless ($main::switch{q}) {
+			my $header = main::header;
+			say $header;
+			say '=' x length $header;
+			say q{};
+			$main::wrapper = 1;
+		}
 	}
 }
 
