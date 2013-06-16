@@ -69,12 +69,9 @@ sub rgb {
 	$attr =~ s/^#//;
 	$attr =~ s/[^a-f0-9]/0/g;
 
-	if (length $attr <= 3) {
-		$attr .= '0' while length($attr) % 3;
+	$attr .= '0' while length($attr) % 3;
+	if (length $attr == 3) {
 		substr($attr, $_, 0, '0') for 0, 2, 4;
-	}
-	else {
-		$attr .= '0' while length($attr) % 3;
 	}
 
 	my $sep = length($attr) / 3;
