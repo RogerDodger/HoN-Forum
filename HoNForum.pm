@@ -77,9 +77,7 @@ sub rgb {
 	my $sep = length($attr) / 3;
 	my $len = min(8, $sep);
 	my $offset = max($sep - 8, 0);
-	return map {
-		hex substr substr($attr, $_ + $offset, $len), 0, 2
-	} 0, $sep, 2 * $sep;
+	return map { hex substr $attr, $_ + $offset, 2 } 0, $sep, 2 * $sep;
 }
 
 sub is_lime {
