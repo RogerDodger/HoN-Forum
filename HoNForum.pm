@@ -3,6 +3,7 @@ package main;
 use Mojo::Base -strict;
 use DBI;
 use DateTime::TimeZone;
+use List::Util qw/min max/;
 
 our ($thread, $wrapper, $dbh, %switch);
 
@@ -61,6 +62,42 @@ sub format_timestamp {
 			->parse_datetime($timestamp)
 			->set_time_zone($ENV{TZ})
 			->strftime($fmt);
+}
+
+sub rgb {
+	my $attr = lc shift // '';
+	$attr =~ s/^#//;
+	$attr =~ s/[^a-f0-9]/0/g;
+
+	if (length $attr <= 3) {
+		$attr .= '0' while length($attr) % 3;
+		substr($attr, $_, 0, '0') for 0, 2, 4;
+	}
+	else {
+		$attr .= '0' while length($attr) % 3;
+	}
+
+	my $sep = length($attr) / 3;
+	my $len = min(8, $sep);
+	my $offset = max($sep - 8, 0);
+	return map {
+		hex substr substr($attr, $_ + $offset, $len), 0, 2
+	} 0, $sep, 2 * $sep;
+}
+
+sub is_lime {
+	my $attr = shift;
+	$attr =~ s/ +/ /g;
+	$attr =~ s/^ | $//g;
+
+	return 1 if $attr =~ /^lime$/i;
+
+	my ($r, $g, $b) = rgb($attr);
+	return $g > 225
+	    && $r < 33
+	    && $b < 33
+	    && abs($r - $b) < 25
+	;
 }
 
 sub header {

@@ -56,7 +56,7 @@ while (my $post = $sth->fetchrow_hashref) {
 
 	$dom->find('.bbcode_quote')->each(sub { $_->parent->remove });
 	$dom->find('font[color]')->each(sub {
-		return unless $_->attrs('color') =~ /^lime|#00ff00$/i;
+		return unless is_lime $_->attrs('color');
 		my $text = $_->all_text;
 		while ($text =~ /(un)?vote \b (?: [ ]? (\w{1,12}|no [ ] lynch) \b )?/ixg) {
 			if (defined(my $vote = $votes{$post->{user}})) {
