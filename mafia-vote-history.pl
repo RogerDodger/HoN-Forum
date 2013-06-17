@@ -27,7 +27,7 @@ if ($gamedate !~ $gamedate_qr) {
 	exit(1);
 }
 
-my $sth = $dbh->prepare('SELECT * FROM posts WHERE thread = ?');
+my $sth = $dbh->prepare('SELECT * FROM posts WHERE thread = ? ORDER BY created ASC');
 $sth->execute($thread);
 
 if ($switch{b} && !$switch{n}) {
@@ -46,7 +46,7 @@ while (my $post = $sth->fetchrow_hashref) {
 
 	if ($post->{user} eq $host) {
 		my $text = $dom->all_text;
-		while ($text =~ /It is now ($gamedate_qr)|($gamedate_qr) has (begun|ended)/ig) {
+		while ($text =~ /It is now ($gamedate_qr)|($gamedate_qr) has (begun|started|ended)/ig) {
 			$gamedate = $1 || $2;
 			$gamedate =~ s/Night/Day/; # TheJoo liked not marking the
 			                           # start of new days for some reason...
