@@ -44,17 +44,19 @@ while (my $post = $sth->fetchrow_hashref) {
 		$host = $post->{user};
 	}
 
+	$dom->find('.bbcode_quote')->each(sub { $_->parent->remove });
+
 	if ($post->{user} eq $host) {
 		my $text = $dom->all_text;
-		while ($text =~ /It is now ($gamedate_qr)|($gamedate_qr) has (begun|started|ended)/ig) {
+		while ($text =~ /It is now ($gamedate_qr)|($gamedate_qr) has (?:begun|started|ended)/ig) {
 			$gamedate = $1 || $2;
 			$gamedate =~ s/Night/Day/; # TheJoo liked not marking the
 			                           # start of new days for some reason...
 			%votes = ();
 		}
+		next;
 	}
 
-	$dom->find('.bbcode_quote')->each(sub { $_->parent->remove });
 	$dom->find('font[color]')->each(sub {
 		return unless is_lime $_->attrs('color');
 		my $text = $_->all_text;
